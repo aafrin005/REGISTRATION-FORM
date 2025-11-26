@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>User Registration</title>
+<style>
+body {
+  font-family: Arial;
+  background: #f5f5f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.container {
+  background: white;
+  padding: 30px;
+  width: 350px;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+input {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+button {
+  width: 100%;
+  padding: 12px;
+  background: #007bff;
+  border: none;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
+button:hover {
+  background: #0056b3;
+}
+a {
+  display: block;
+  margin-top: 15px;
+  text-align: center;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+<h2>Register User</h2>
+
+<form id="regForm">
+  <input type="text" id="fullName" placeholder="Full Name" required>
+  <input type="email" id="email" placeholder="Email" required>
+  <input type="text" id="phone" placeholder="Phone">
+  <input type="text" id="address" placeholder="Address">
+  <input type="text" id="extra" placeholder="Extra Info">
+  <button type="submit">Submit</button>
+</form>
+
+<a href="list.html">➡ Go to User List</a>
+</div>
+
+<script>
+const API = "https://script.google.com/macros/s/AKfycbw4sOi0V-AO3qPx-rdwIuPZ90mNH4PTijmvpFfzzorgg6UXs8KQlqwpjiqsUBH3Wri6/exec";
+
+document.getElementById("regForm").onsubmit = async (e) => {
+  e.preventDefault();
+
+  const params = new URLSearchParams({
+    action: "create",
+    fullName: fullName.value,
+    email: email.value,
+    phone: phone.value,
+    address: address.value,
+    extra: extra.value
+  });
+
+  await fetch(API + "?" + params);
+  alert("User Added!");
+  regForm.reset();
+};
+</script>
+
+</body>
+</html>
